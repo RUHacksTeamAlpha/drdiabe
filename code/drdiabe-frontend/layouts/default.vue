@@ -32,7 +32,7 @@
         </v-toolbar-title>
       </div>
       <v-spacer />
-      <v-tabs color="white">
+      <v-tabs color="white" v-if="$vuetify.breakpoint.mdAndUp">
         <v-spacer></v-spacer>
         <v-tabs-slider color="white"></v-tabs-slider>
         <v-tab v-for="item in items" :key="item.id" :to="item.to">
@@ -68,13 +68,18 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Home',
           to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire',
+        },
+        {
+          icon: 'mdi-lock',
+          title: 'Login',
+          to: '/login',
         },
       ],
       miniVariant: false,

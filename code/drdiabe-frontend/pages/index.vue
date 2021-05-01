@@ -1,116 +1,124 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
+  <v-container fluid>
+    <v-row no-gutters>
+      <v-col>
+        <v-card class="ma-2" color="transparent" elevation="0">
+          <v-slide-y-reverse-transition appear>
+            <v-card-text
+              class="text-md-h2 text-h4 font-weight-medium white--text"
             >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-    <v-col>
-      <v-card color="primary">
-        <v-card-title> Primary </v-card-title>
-      </v-card>
-      <v-card color="accent">
-        <v-card-title> Accent </v-card-title>
-      </v-card>
-      <v-card color="secondary">
-        <v-card-title> Secondary </v-card-title>
-      </v-card>
-      <v-card color="info">
-        <v-card-title> Info </v-card-title>
-      </v-card>
-      <v-card color="warning">
-        <v-card-title> Warning </v-card-title>
-      </v-card>
-      <v-card color="error">
-        <v-card-title> Error </v-card-title>
-      </v-card>
-      <v-card color="success">
-        <v-card-title> Success </v-card-title>
-      </v-card>
-    </v-col>
-  </v-row>
+              Test. Upload. Understand your diabetes.
+            </v-card-text>
+          </v-slide-y-reverse-transition>
+
+          <v-fade-transition>
+            <v-card-subtitle class="text-overline">
+              leveraging cloud computing to bring more affordable diabetic care
+              to millions around the world
+            </v-card-subtitle>
+          </v-fade-transition>
+          <v-card-actions>
+            <v-btn outlined rounded color="accent"> Get started </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-sheet
+      color="transparent"
+      elevation="0"
+      :height="$vuetify.breakpoint.mdAndUp ? '300' : '150'"
+      width="100%"
+    >
+    </v-sheet>
+    <v-row>
+      <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
+        <v-card class="rounded-card pa-0 up" color="transparent" elevation="0">
+          <v-img height="453px" src="/img/diverse-happy.jpg"></v-img>
+        </v-card>
+      </v-col>
+      <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
+        <v-card class="pa-2 down">
+          <v-card-title class="text-md-h3 text-h4 font-weight-medium">
+            Features
+          </v-card-title>
+          <v-card-subtitle class="text-md-subtitle-1 text-subtitle-2">
+            Maybe you're a good Diabetic. Maybe you have a handwritten logbook
+            and you're wondering how drdiabe.tech can help you. Don't worry,
+            we've got you covered. Here's a list of key feature you get access
+            to when you sign up for an account with drdiabe.tech!
+          </v-card-subtitle>
+          <v-divider></v-divider>
+          <v-card-text>
+            <v-card elevation="0" class="pa-2">
+              <v-card-title class="pa-0 text-md-h5 text-h6">
+                <v-icon class="mx-2">mdi-upload</v-icon>
+                Upload your Blood Glucose
+              </v-card-title>
+              <v-card-text class="pa-0"> Enter your B.G and ... </v-card-text>
+            </v-card>
+            <v-card elevation="0" class="pa-2">
+              <v-card-title class="pa-0">
+                <v-icon class="mx-2">mdi-chart-bell-curve</v-icon>
+                View your Blood Glucose Trends <br />
+              </v-card-title>
+              <v-card-text class="pa-0">
+                Monitor your Blood Glucose Trends ...
+              </v-card-text>
+            </v-card>
+            <v-card elevation="0" class="pa-2">
+              <v-card-title class="pa-0">
+                <v-icon class="mx-2">mdi-clipboard-outline</v-icon>
+                Generate Summary Reports <br />
+              </v-card-title>
+              <v-card-text class="pa-0">
+                Generate a report which details the average trends of your blood
+                glucose ...
+              </v-card-text>
+            </v-card>
+          </v-card-text>
+          <v-card-actions>
+            <v-row>
+              <v-col>
+                <v-btn outlined rounded color="accent"> Get started </v-btn>
+              </v-col>
+              <v-col>
+                <v-btn rounded plain color="info">
+                  See how drdiabe.tech was made
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-spacer v-if="$vuetify.breakpoint.mdAndUp"></v-spacer>
+    </v-row>
+    <v-sheet
+      color="transparent"
+      elevation="0"
+      :height="$vuetify.breakpoint.mdAndUp ? '300' : '150'"
+      width="100%"
+    >
+    </v-sheet>
+    <v-row> </v-row>
+  </v-container>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
-export default {
-  components: {
-    Logo,
-    VuetifyLogo,
-  },
-}
+export default {}
 </script>
+
+<style scoped>
+.rounded-card {
+  border-radius: 50px;
+}
+
+@media (min-width: 800px) {
+  .down {
+    transform: translateY(15px);
+  }
+
+  .up {
+    transform: translateY(-15px);
+  }
+}
+</style>
