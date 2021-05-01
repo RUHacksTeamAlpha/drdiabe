@@ -48,8 +48,12 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ title }} - {{ new Date().getFullYear() }}</span>
+    <v-footer absolute dark padless app>
+      <v-card flat tile width="100%" class="white--text text-center">
+        <v-card-text class="pa-1">
+          &copy; {{ title }} - {{ new Date().getFullYear() }}
+        </v-card-text>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
@@ -77,6 +81,11 @@ export default {
       title: 'drdiabe.tech',
       trunc: 'dr.d',
     }
+  },
+  computed: {
+    getItems() {
+      return this.$store.state.routes.getItems
+    },
   },
 }
 </script>

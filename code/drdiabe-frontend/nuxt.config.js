@@ -47,13 +47,13 @@ export default {
           storageBucket: '<storageBucket>',
           messagingSenderId: '<messagingSenderId>',
           appId: '<appId>',
-          measurementId: '<measurementId>'
+          measurementId: '<measurementId>',
         },
         services: {
-          auth: true // Just as example. Can be any other service.
-        }
-      }
-    ]
+          auth: true, // Just as example. Can be any other service.
+        },
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
