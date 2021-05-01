@@ -77,6 +77,29 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <v-col>
+      <v-card color="primary">
+        <v-card-title> Primary </v-card-title>
+      </v-card>
+      <v-card color="accent">
+        <v-card-title> Accent </v-card-title>
+      </v-card>
+      <v-card color="secondary">
+        <v-card-title> Secondary </v-card-title>
+      </v-card>
+      <v-card color="info">
+        <v-card-title> Info </v-card-title>
+      </v-card>
+      <v-card color="warning">
+        <v-card-title> Warning </v-card-title>
+      </v-card>
+      <v-card color="error">
+        <v-card-title> Error </v-card-title>
+      </v-card>
+      <v-card color="success">
+        <v-card-title> Success </v-card-title>
+      </v-card>
+    </v-col>
   </v-row>
 </template>
 
