@@ -10,8 +10,7 @@
               Test. Upload. Understand your diabetes.
             </v-card-text>
           </v-slide-y-reverse-transition>
-
-          <v-fade-transition>
+          <v-fade-transition appear>
             <v-card-subtitle class="text-overline">
               leveraging cloud computing to bring more affordable diabetic care
               to millions around the world
