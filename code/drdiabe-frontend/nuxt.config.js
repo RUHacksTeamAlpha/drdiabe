@@ -6,8 +6,8 @@ module.exports = {
   // srcDir: '.',
   // buildDir: 'functions/.nuxt',
   head: {
-    titleTemplate: '%s - drdiabe-frontend',
-    title: 'drdiabe-frontend',
+    titleTemplate: '%s - drdiabetech',
+    title: 'drdiabe.tech',
     htmlAttrs: {
       lang: 'en',
     },
@@ -58,7 +58,6 @@ module.exports = {
         services: {
           auth: true, // Just as example. Can be any other service.
         },
-        onFirebaseHosting: true,
       },
     ],
   ],
@@ -92,4 +91,15 @@ module.exports = {
 
   //Custom by me, Allen!
   // middleware: ["assests/auth"],
+  auth: {
+    persistence: 'local', // default
+    initialize: {
+      onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
+      onAuthStateChangedAction: 'onAuthStateChangedAction',
+      subscribeManually: false
+    },
+    ssr: false, // default
+    emulatorPort: 9099,
+    emulatorHost: 'http://localhost',
+  }
 }

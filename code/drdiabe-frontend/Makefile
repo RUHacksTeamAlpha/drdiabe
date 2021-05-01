@@ -10,5 +10,10 @@ kill:
 
 	
 cloud:
-	docker tag ruhacks-frontend gcr.io/team-dn-htn/ruhacks-frontend
-	docker push gcr.io//ruhacks-frontend
+	docker tag ruhacks-frontend gcr.io/diabetech-515ed/ruhacks-frontend
+	docker push gcr.io/diabetech-515ed/ruhacks-frontend
+
+
+dhub:
+	docker tag ruhacks-frontend alphakilo07/ruhacks-frontend
+	docker push alphakilo07/ruhacks-frontend

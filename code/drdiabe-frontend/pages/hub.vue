@@ -1,29 +1,88 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col>
-        <v-card max-width="250">
-          <v-row>
-            <v-icon>mdi-water</v-icon>
-
-            <v-card-text class="pa-0 mx-2">
-              Total Number of B.G Records
-            </v-card-text>
-
-            <v-card-text class="pa-0 mx-2"> 7 </v-card-text>
-          </v-row>
+      <v-col cols="2" v-if="$vuetify.breakpoint.mdAndUp">
+        <v-card class="pa-2" elevation="5">
+          <v-subheader class="text-overline">NAVIGATION</v-subheader>
+          <v-divider></v-divider>
+          <v-list>
+            <v-list-item-group v-model="selectedItem" color="primary">
+              <v-list-item v-for="(item, i) in items" :key="i">
+                <v-list-item-icon>
+                  <v-icon v-text="item.icon"></v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.text"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
-      <v-spacer></v-spacer>
       <v-col>
-        <Trends />
+        <v-row class="my-2" v-if="$vuetify.breakpoint.smAndDown">
+          <v-col cols="12">
+            <v-card class="pa-2" elevation="5">
+              <v-subheader class="text-overline">NAVIGATION</v-subheader>
+              <v-divider></v-divider>
+              <v-list>
+                <v-list-item-group v-model="selectedItem" color="primary">
+                  <v-list-item v-for="(item, i) in items" :key="i">
+                    <v-list-item-icon>
+                      <v-icon v-text="item.icon"></v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title v-text="item.text"></v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-window v-model="selectedItem" class="elevation-0" vertical>
+          <v-window-item>
+            <!-- View Charts -->
+            <v-row>
+              <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
+                <BGTotal v-scroll-reveal="{ delay: 150 }" />
+              </v-col>
+              <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
+                <TimeSince v-scroll-reveal="{ delay: 550 }" />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
+                <Trends v-scroll-reveal="{ delay: 750 }" />
+              </v-col>
+              <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
+                <TimeInRange v-scroll-reveal="{ delay: 350 }" />
+              </v-col>
+            </v-row>
+          </v-window-item>
+          <v-window-item>
+            <!-- Summary -->
+            <v-row>
+              <v-col> <Summary /> </v-col>
+            </v-row>
+          </v-window-item>
+          <v-window-item>
+            <!-- Upload B.G -->
+            <v-row>
+              <v-col>
+                <Upload />
+              </v-col>
+            </v-row>
+          </v-window-item>
+        </v-window>
       </v-col>
-      <v-col>
-        <TimeInRange />
-      </v-col>
-      <v-spacer></v-spacer>
+      <v-sheet
+        color="transparent"
+        elevation="0"
+        :height="$vuetify.breakpoint.mdAndUp ? '400' : '100'"
+        width="100%"
+      >
+      </v-sheet>
     </v-row>
   </v-container>
 </template>
@@ -31,11 +90,31 @@
 <script>
 import Trends from '../components/charts/Trends'
 import TimeInRange from '../components/charts/TimeInRange'
+import BGTotal from '../components/charts/BGTotal'
+import TimeSince from '../components/charts/TimeSince'
+import Upload from '../components/utils/Upload'
+import Summary from '../components/utils/Summary'
+// import SideBar from '../components/charts/SideBar'
 
 export default {
   components: {
     Trends,
     TimeInRange,
+    BGTotal,
+    TimeSince,
+    // SideBar,
+    Upload,
+    Summary,
+  },
+  data() {
+    return {
+      selectedItem: 0,
+      items: [
+        { text: 'View Charts', icon: 'mdi-chart-line' },
+        { text: 'Summary', icon: 'mdi-calendar' },
+        { text: 'Upload B.G', icon: 'mdi-water' },
+      ],
+    }
   },
 }
 </script>

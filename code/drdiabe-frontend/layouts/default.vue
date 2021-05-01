@@ -59,23 +59,28 @@
           drdiabe.tech
         </v-card-text>
         <v-card-text>
-          <v-btn
-            v-for="(item, index) in social"
-            :key="index"
-            :href="item.href"
-            target="_blank"
-            icon
-            class="mx-4 white--text"
-          >
-            <v-icon size="24px" color="white"> {{ item.icon }} </v-icon>
-          </v-btn>
+          <v-tooltip v-for="(item, index) in social" :key="index" bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                :href="item.href"
+                target="_blank"
+                icon
+                class="mx-4 white--text"
+              >
+                <v-icon size="24px" color="white" v-bind="attrs" v-on="on">
+                  {{ item.icon }}
+                </v-icon>
+              </v-btn>
+            </template>
+            <span>{{ item.alt }}</span>
+          </v-tooltip>
         </v-card-text>
       </v-card>
       <v-divider></v-divider>
       <v-card-text>
         <v-row>
           <v-col align="center" justify="center">
-            &copy; {{ new Date().getFullYear() }}, {{ title }}
+            &copy; {{ new Date().getFullYear() }}
           </v-col>
         </v-row>
       </v-card-text>
@@ -101,7 +106,7 @@ export default {
         },
         {
           icon: 'mdi-lock',
-          title: 'Login',
+          title: 'Login/Logout',
           to: '/login',
         },
         {
@@ -115,14 +120,17 @@ export default {
       social: [
         {
           icon: 'mdi-facebook',
+          alt: 'Facebook',
           href: '',
         },
         {
           icon: 'mdi-instagram',
+          alt: 'Instagram',
           href: '',
         },
         {
           icon: 'mdi-github',
+          alt: 'Github',
           href: '',
         },
       ],
@@ -133,5 +141,6 @@ export default {
       return this.$store.state.routes.getItems
     },
   },
+  methods: {},
 }
 </script>

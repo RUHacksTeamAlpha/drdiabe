@@ -42,7 +42,7 @@
     <v-sheet
       color="transparent"
       elevation="0"
-      :height="$vuetify.breakpoint.mdAndUp ? '400' : '150'"
+      :height="$vuetify.breakpoint.mdAndUp ? '400' : '100'"
       width="100%"
     >
     </v-sheet>
@@ -54,7 +54,12 @@
           color="transparent"
           elevation="0"
         >
-          <v-img height="453px" src="/img/diverse-happy.jpg"></v-img>
+          <v-img
+            v-if="$vuetify.breakpoint.mdAndUp"
+            height="550px"
+            min-width="800px"
+            src="/img/diverse-happy.jpg"
+          ></v-img>
         </v-card>
       </v-col>
       <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
@@ -210,7 +215,7 @@
     <v-sheet
       color="transparent"
       elevation="0"
-      :height="$vuetify.breakpoint.mdAndUp ? '300' : '150'"
+      :height="$vuetify.breakpoint.mdAndUp ? '300' : '100'"
       width="100%"
     >
     </v-sheet>
