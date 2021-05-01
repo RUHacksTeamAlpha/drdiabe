@@ -32,7 +32,7 @@
         </v-toolbar-title>
       </div>
       <v-spacer />
-      <v-tabs color="white" v-if="$vuetify.breakpoint.mdAndUp">
+      <v-tabs v-if="$vuetify.breakpoint.mdAndUp" color="white">
         <v-spacer></v-spacer>
         <v-tabs-slider color="white"></v-tabs-slider>
         <v-tab v-for="item in items" :key="item.id" :to="item.to">
@@ -45,15 +45,40 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt />
+        <v-fade-transition mode="out-in" :hide-on-leave="true">
+          <nuxt />
+        </v-fade-transition>
       </v-container>
     </v-main>
-    <v-footer absolute dark padless app>
+    <v-footer absolute dark padless app color="primary">
       <v-card flat tile width="100%" class="white--text text-center">
-        <v-card-text class="pa-1">
-          &copy; {{ title }} - {{ new Date().getFullYear() }}
+        <v-card-text>
+          <v-icon> mdi-stethoscope </v-icon>
+        </v-card-text>
+        <v-card-text class="pa-0 text-body-2 text-md-body-1 white--text">
+          drdiabe.tech
+        </v-card-text>
+        <v-card-text>
+          <v-btn
+            v-for="(item, index) in social"
+            :key="index"
+            :href="item.href"
+            target="_blank"
+            icon
+            class="mx-4 white--text"
+          >
+            <v-icon size="24px" color="white"> {{ item.icon }} </v-icon>
+          </v-btn>
         </v-card-text>
       </v-card>
+      <v-divider></v-divider>
+      <v-card-text>
+        <v-row>
+          <v-col align="center" justify="center">
+            &copy; {{ new Date().getFullYear() }}, {{ title }}
+          </v-col>
+        </v-row>
+      </v-card-text>
     </v-footer>
   </v-app>
 </template>
@@ -62,9 +87,7 @@
 export default {
   data() {
     return {
-      clipped: false,
       drawer: false,
-      fixed: false,
       items: [
         {
           icon: 'mdi-apps',
@@ -73,18 +96,36 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          title: 'My Hub',
+          to: '/hub',
         },
         {
           icon: 'mdi-lock',
           title: 'Login',
           to: '/login',
         },
+        {
+          icon: 'mdi-account',
+          title: 'Account',
+          to: '/account',
+        },
       ],
-      miniVariant: false,
       title: 'drdiabe.tech',
       trunc: 'dr.d',
+      social: [
+        {
+          icon: 'mdi-facebook',
+          href: '',
+        },
+        {
+          icon: 'mdi-instagram',
+          href: '',
+        },
+        {
+          icon: 'mdi-github',
+          href: '',
+        },
+      ],
     }
   },
   computed: {

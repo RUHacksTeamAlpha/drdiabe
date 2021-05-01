@@ -8,14 +8,27 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
-  },
-  "dependencies": {
-    "@nuxtjs/axios": "^5.13.1",
-    "@nuxtjs/firebase": "^7.5.0",
+    "lint": "yarn lint:js",
+    "build:firebase": "yarn clean && yarn build && yarn copy && cd \"functions\" && yarn",
+
+    "clean": "yarn clean:public && yarn clean:functions && yarn clean:static",
+    "clean:functions": "rimraf \"functions/node_modules\" && rimraf \"functions/.nuxt\"",
+    "clean:public": "rimraf \"public/**/*.*!(md)\" && rimraf \"public/_nuxt\"",
+    "clean:static": "rimraf \"src/static/sw.js\"",
+
+    "copy": "yarn copy:nuxt && yarn copy:static",
+    "copy:nuxt": "xcopy \".nuxt\\\"  \"functions\\.nuxt\\dist\\*\" /E /Y",
+    "copy:static": "xcopy \"public\\\"  \"src\\static\\*\" /E /Y",
+
+    "start:firbase": "firebase serve --only functions,hosting",
+
+    "deploy": "firebase deploy --only functions,hosting"
+   ,"apexcharts": "^3.26.1",
     "core-js": "^3.9.1",
     "firebase": "^8.4.3",
-    "nuxt": "^2.15.3"
+    "nuxt": "^2.15.3",
+    "vue-apexcharts": "^1.6.1",
+    "vue-scroll-reveal": "^1.0.11"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",

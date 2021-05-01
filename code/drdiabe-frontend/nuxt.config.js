@@ -1,7 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 
-export default {
+module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
+
+  // srcDir: '.',
+  // buildDir: 'functions/.nuxt',
   head: {
     titleTemplate: '%s - drdiabe-frontend',
     title: 'drdiabe-frontend',
@@ -20,7 +23,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vue-scroll-reveal.js', ssr: false },
+    { src: '~/plugins/vue-apexcharts.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -41,17 +47,18 @@ export default {
       '@nuxtjs/firebase',
       {
         config: {
-          apiKey: '<apiKey>',
-          authDomain: '<authDomain>',
-          projectId: '<projectId>',
-          storageBucket: '<storageBucket>',
-          messagingSenderId: '<messagingSenderId>',
-          appId: '<appId>',
-          measurementId: '<measurementId>',
+          apiKey: 'AIzaSyAUzqt2lVNOULpyLdVsF-73f5ozXhkCc3o',
+          authDomain: 'diabetech-515ed.firebaseapp.com',
+          projectId: 'diabetech-515ed',
+          storageBucket: 'diabetech-515ed.appspot.com',
+          messagingSenderId: '209540750751',
+          appId: '1:209540750751:web:5b2ff265751d32a3db31aa',
+          measurementId: 'G-YHVVFGH5RC',
         },
         services: {
           auth: true, // Just as example. Can be any other service.
         },
+        onFirebaseHosting: true,
       },
     ],
   ],
@@ -79,7 +86,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    // extractCSS: true,
+  },
 
   //Custom by me, Allen!
   // middleware: ["assests/auth"],
