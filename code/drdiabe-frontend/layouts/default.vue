@@ -18,7 +18,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar fixed app>
+    <v-app-bar fixed elevate-on-scroll dense app>
       <v-app-bar-nav-icon
         v-if="$vuetify.breakpoint.smAndDown"
         @click.stop="drawer = !drawer"
@@ -26,7 +26,7 @@
       <div>
         <v-toolbar-title>
           <router-link to="/" tag="span" style="cursor: pointer">
-            <v-icon>mdi-stethoscope</v-icon>
+            <v-icon class="mx-2"> mdi-stethoscope </v-icon>
             {{ $vuetify.breakpoint.mdAndUp ? title : trunc }}
           </router-link>
         </v-toolbar-title>
@@ -126,7 +126,7 @@ export default {
         {
           icon: 'mdi-github',
           alt: 'Github',
-          href: '',
+          href: 'https://github.com/RUHacksTeamAlpha/drdiabe',
         },
       ],
     }

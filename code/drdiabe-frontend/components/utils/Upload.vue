@@ -1,20 +1,30 @@
 <template>
   <v-card>
-    <v-stepper v-model="e1" alt-labels>
+    <v-stepper v-model="curr" alt-labels>
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1">
+        <v-stepper-step
+          color="accent"
+          :complete="curr > 1"
+          :rules="rules1"
+          step="1"
+        >
           Enter B.G Value
         </v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :complete="e1 > 2" step="2">
+        <v-stepper-step
+          color="accent"
+          :complete="curr > 2"
+          :rules="rules2"
+          step="2"
+        >
           Enter Time
         </v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step step="3"> Confirm </v-stepper-step>
+        <v-stepper-step color="accent" step="3"> Confirm </v-stepper-step>
       </v-stepper-header>
 
       <v-stepper-items>
@@ -32,9 +42,9 @@
             </v-text-field>
           </v-card>
 
-          <v-btn color="accent" @click="e1 = 2"> Continue </v-btn>
+          <v-btn color="accent" @click="curr = 2"> Continue </v-btn>
 
-          <v-btn text color="error"> Cancel </v-btn>
+          <v-btn text color="info"> Cancel </v-btn>
         </v-stepper-content>
 
         <v-stepper-content step="2">
@@ -99,8 +109,8 @@
             </v-dialog>
           </v-card>
 
-          <v-btn color="accent" @click="e1 = 3"> Continue </v-btn>
-          <v-btn text color="error"> Cancel </v-btn>
+          <v-btn color="accent" @click="curr = 3"> Continue </v-btn>
+          <v-btn text color="info"> Cancel </v-btn>
         </v-stepper-content>
 
         <v-stepper-content step="3">
@@ -120,9 +130,9 @@
             </v-card-text>
           </v-card>
 
-          <v-btn color="success" @click="e1 = 1"> Upload </v-btn>
+          <v-btn color="success" @click="curr = 1"> Upload </v-btn>
 
-          <v-btn text color="error"> Cancel </v-btn>
+          <v-btn text color="info"> Cancel </v-btn>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -133,13 +143,47 @@
 export default {
   data() {
     return {
-      e1: 1,
+      curr: 1,
       bg: null,
       time: null,
       modal2: false,
       modal: false,
       date: new Date().toISOString().substr(0, 10),
+      valid: false,
+      steps: [
+        { name: 'Start', rules: [(v) => !!v || 'Required.'], valid: true },
+        { name: 'Step 2', rules: [(v) => !!v || 'Required.'], valid: true },
+        {
+          name: 'Step 3',
+          rules: [
+            (v) => (v && v.length >= 4) || 'Enter at least 4 characters.',
+          ],
+          valid: true,
+        },
+        { name: 'Complete' },
+      ],
+      stepForm: [],
     }
+  },
+  methods: {
+    stepComplete(step) {
+      return this.curr > step
+    },
+    stepStatus(step) {
+      return this.curr > step ? 'green' : 'blue'
+    },
+    validate(n) {
+      this.steps[n].valid = false
+      const v = this.$refs.stepForm[n].validate() // replace with 'let' ???
+      if (v) {
+        this.steps[n].valid = true
+        // continue to next
+        this.curr = n + 2
+      }
+    },
+    done() {
+      this.curr = 5
+    },
   },
 }
 </script>

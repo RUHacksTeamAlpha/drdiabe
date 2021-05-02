@@ -26,11 +26,13 @@
             v-scroll-reveal="{ delay: 350 }"
             class="text-overline py-1"
           >
-            to <i class="white--text"> millions </i> around the globe.
+            to <i class="primary--text"> millions </i> around the globe.
           </v-card-subtitle>
 
           <v-card-actions v-scroll-reveal="{ delay: 450 }">
-            <v-btn large outlined rounded color="primary"> Get started </v-btn>
+            <v-btn large outlined rounded to="/login" color="primary">
+              Get started
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -114,7 +116,9 @@
           <v-card-actions>
             <v-row>
               <v-col>
-                <v-btn outlined rounded color="primary"> Get started </v-btn>
+                <v-btn to="/login" outlined rounded color="primary">
+                  Get started
+                </v-btn>
               </v-col>
               <v-spacer></v-spacer>
               <v-col>
@@ -210,13 +214,19 @@
               </v-row>
             </v-card-text>
             <v-card-actions class="px-4" v-scroll-reveal="{ delay: 950 }">
-              <v-btn rounded color="success darken-2"> Get started </v-btn>
+              <v-btn to="/login" rounded color="success darken-2">
+                Get started
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="6">
-          <v-card v-scroll-reveal="{ delay: 150 }" class="mx-3 rounded-card">
-            <v-img contain src="/img/testing.jpg"> </v-img>
+        <v-col align-self="center" v-if="$vuetify.breakpoint.mdAndUp" cols="6">
+          <v-card
+            v-scroll-reveal="{ delay: 150 }"
+            class="mx-3 rounded-card"
+            color="white"
+          >
+            <v-img contain src="/img/diabetes-minimal.jpg"> </v-img>
           </v-card>
         </v-col>
       </v-row>
@@ -247,15 +257,15 @@ export default {}
 
 @media (min-width: 800px) {
   .down {
-    transform: translateY(100px);
+    transform: translateY(150px);
   }
 
   .up {
-    transform: translateY(-100px);
+    transform: translateY(-150px);
   }
 
   .up-and-left {
-    transform: translateY(-175px) translateX(-125px);
+    transform: translateY(-185px) translateX(-125px);
   }
 
   @keyframes fadeIn {

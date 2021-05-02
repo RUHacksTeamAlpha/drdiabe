@@ -21,7 +21,13 @@
           <v-card-actions>
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="accent" dark v-bind="attrs" v-on="on">
+                <v-btn
+                  :disabled="selectedItem == 2"
+                  color="accent"
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
                   Range
                   <v-icon class="mx-1">mdi-arrow-expand-horizontal</v-icon>
                 </v-btn>
@@ -33,7 +39,14 @@
               </v-list>
             </v-menu>
             <v-spacer />
-            <v-btn plain color="info"> DOWNLOAD </v-btn>
+            <v-btn
+              @click="download()"
+              :disabled="selectedItem == 2"
+              plain
+              color="success"
+            >
+              DOWNLOAD
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -165,6 +178,11 @@ export default {
     },
     TimeSince() {
       return '1 day, 2 hours, 15 minutes'
+    },
+  },
+  methods: {
+    download() {
+      return null
     },
   },
 }

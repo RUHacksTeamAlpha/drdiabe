@@ -26,6 +26,11 @@ export default {
       chartOptions: {
         colors: ['#f0a30a', '#60AFFF', '#F44336'], // #60AFFF
         labels: ['Below Target', 'In Range', 'Above Target'],
+        legend: {
+          labels: {
+            colors: 'white',
+          },
+        },
       },
     }
   },

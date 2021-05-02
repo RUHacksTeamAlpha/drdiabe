@@ -36,10 +36,43 @@ export default {
             '6:00pm',
             '9:00pm',
           ],
+          labels: {
+            style: {
+              colors: [
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+              ],
+            },
+          },
         },
         yaxis: {
           max: 12,
           min: 2.0,
+          labels: {
+            style: {
+              colors: [
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+              ],
+            },
+          },
+        },
+        legend: {
+          labels: {
+            colors: 'white',
+          },
         },
       },
       series: [
