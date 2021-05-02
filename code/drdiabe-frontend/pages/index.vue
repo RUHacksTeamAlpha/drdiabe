@@ -214,12 +214,12 @@
               </v-row>
             </v-card-text>
             <v-divider></v-divider>
-            <v-card-actions class="px-4" v-scroll-reveal="{ delay: 950 }">
+            <v-card-actions v-scroll-reveal="{ delay: 950 }" class="px-4">
               <v-btn to="/login" rounded color="secondary"> Get started </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col align-self="center" v-if="$vuetify.breakpoint.mdAndUp" cols="6">
+        <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="6" align-self="center">
           <v-card
             v-scroll-reveal="{ delay: 150 }"
             class="mx-3 rounded-card"

@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <div v-if="this.$fire.auth.currentUser !== null">
+    <div v-if="$fire.auth.currentUser !== null">
       <v-row class="my-3">
         <v-col cols="12">
           <v-card class="pa-2" elevation="5">
@@ -26,8 +26,8 @@
                     color="accent"
                     dark
                     v-bind="attrs"
-                    v-on="on"
                     :disabled="selectedItem === 2"
+                    v-on="on"
                   >
                     Range
                     <v-icon class="mx-1">mdi-arrow-expand-horizontal</v-icon>
@@ -52,24 +52,18 @@
           <!-- View Charts -->
           <v-row>
             <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
-              <BGTotal
-                v-scroll-reveal="{ delay: 150 }"
-                :numberOfBG="numberOfBG"
-              />
+              <BGTotal :numberOfBG="data ? data.length : 0" />
             </v-col>
             <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
-              <TimeSince
-                v-scroll-reveal="{ delay: 550 }"
-                time="1 day, 2 hours, 15 minutes"
-              />
+              <TimeSince :time="data[0] ? data[data.length - 1].time : '0'" />
             </v-col>
           </v-row>
           <v-row>
             <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
-              <Trends v-scroll-reveal="{ delay: 750 }" />
+              <Trends />
             </v-col>
             <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
-              <TimeInRange v-scroll-reveal="{ delay: 350 }" />
+              <TimeInRange />
             </v-col>
           </v-row>
         </v-window-item>
@@ -113,12 +107,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Trends from '../components/charts/Trends'
 import TimeInRange from '../components/charts/TimeInRange'
 import BGTotal from '../components/charts/BGTotal'
 import TimeSince from '../components/charts/TimeSince'
 import Upload from '../components/utils/Upload'
 import Summary from '../components/utils/Summary'
+
 // import SideBar from '../components/charts/SideBar'
 
 export default {
@@ -131,6 +127,11 @@ export default {
     Upload,
     Summary,
   },
+  mounted() {
+    if (this.$fire.auth.currentUser !== null) {
+      this.getData()
+    }
+  },
   data() {
     return {
       selectedItem: 0,
@@ -139,19 +140,32 @@ export default {
         { text: 'Summary', icon: 'mdi-calendar' },
         { text: 'Upload B.G', icon: 'mdi-water' },
       ],
+      data: [],
       range: [{ title: 'Daily' }, { title: 'Weekly' }, { title: 'Monthly' }],
     }
   },
-  computed: {
-    numberOfBG() {
-      return 23
-    },
-    TimeSince() {
-      return '1 day, 2 hours, 15 minutes'
-    },
-  },
   methods: {
     download() {
+      return null
+    },
+    async getData() {
+      const domain = 'https://ruhacks-backend-c6jokpb2dq-uc.a.run.app/'
+      const token = await this.$fire.auth.currentUser.getIdToken()
+      await axios
+        .get(domain + '/data', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          this.data = res.data
+          console.log(res.data)
+        })
+        .catch((err) => {
+          console.log('unable to load data: ' + err)
+        })
+    },
+    getTimeSince() {
       return null
     },
   },

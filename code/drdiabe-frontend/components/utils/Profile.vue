@@ -45,7 +45,7 @@
           outlined
           color="success"
           class="mr-4"
-          @click="validate"
+          @click="submit()"
         >
           Update Profile
         </v-btn>
@@ -59,25 +59,51 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    valid: true,
-    name: '',
-    age: 0,
-    weight: 0,
-    low: 0.0,
-    high: 0.0,
-    nameRules: [(v) => !!v || 'Name is required'],
-    int: [(v) => Number.isInteger(v)], // !isNaN(v)
-    number: [(v) => Number.isFinite(v)], // !isNaN(v)
-  }),
+import axios from 'axios'
 
+export default {
+  data() {
+    return {
+      valid: true,
+      name: '',
+      age: 0,
+      weight: 0,
+      low: 0.0,
+      high: 0.0,
+      nameRules: [(v) => !!v || 'Name is required'],
+      int: [(v) => (v && !isNaN(v)) || 'Number is required'], // !isNaN(v)
+      number: [(v) => (v && !isNaN(v)) || 'Number is required'], // !isNaN(v)
+    }
+  },
   methods: {
     validate() {
       this.$refs.form.validate()
     },
     reset() {
       this.$refs.form.reset()
+    },
+    async submit() {
+      const body = {
+        name: this.name,
+        age: parseInt(this.age),
+        weight: parseInt(this.weight),
+        low: parseInt(this.low),
+        high: parseInt(this.high),
+      }
+      const domain = 'https://ruhacks-backend-c6jokpb2dq-uc.a.run.app'
+      const token = await this.$fire.auth.currentUser.getIdToken()
+      await axios
+        .put(domain + '/profile', body, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log('request sent')
+        })
+        .catch((err) => {
+          console.log('error posting upload to database: ' + err)
+        })
     },
   },
 }

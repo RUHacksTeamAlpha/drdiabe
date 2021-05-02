@@ -1,7 +1,7 @@
 <template>
   <v-card class="pa-2" elevation="5">
     <v-card-text class="text-overline text-center white--text py-1">
-      Time Since Last Upload
+      Time of Last Upload
     </v-card-text>
     <v-card-text class="text-center py-1">
       <v-chip rounded outlined color="info" class="text-h5">

@@ -151,6 +151,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -184,11 +186,27 @@ export default {
     }
   },
   methods: {
-    submit() {
-      this.curr = 1
-      console.log(this.date)
-      console.log(this.time)
-      console.log(this.date + 'T' + this.time + ':00Z')
+    async submit() {
+      const body = {
+        time: this.date + 'T' + this.time + ':00Z',
+        bg: parseFloat(this.bg),
+      }
+      const domain = 'https://ruhacks-backend-c6jokpb2dq-uc.a.run.app'
+      const token = await this.$fire.auth.currentUser.getIdToken()
+      await axios
+        .post(domain + '/data', body, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          this.reset()
+          this.curr = 1
+          // this.$router.go(0) // could be bad
+        })
+        .catch((err) => {
+          console.log('error posting upload to database: ' + err)
+        })
     },
     stepComplete(step) {
       return this.curr > step

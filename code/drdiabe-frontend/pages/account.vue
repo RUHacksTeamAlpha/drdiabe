@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
-    <div v-if="this.$fire.auth.currentUser !== null" class="pa-4">
+    <div v-if="$fire.auth.currentUser !== null" class="pa-4">
       <v-row justify="center">
-        <v-card v-scroll-reveal color="transparent" elevation="0">
+        <v-card color="transparent" elevation="0">
           <v-card-text class="text-h4 text-md-h2 white--text">
             My Account
           </v-card-text>
@@ -10,40 +10,31 @@
       </v-row>
       <v-row justify="center">
         <v-col>
-          <v-card
-            v-scroll-reveal="{ delay: 150 }"
-            class="mx-auto pa-0"
-            max-width="374"
-            elevation="5"
-          >
+          <v-card class="mx-auto pa-0" max-width="374" elevation="5">
             <v-img
+              v-if="$fire.auth.currentUser.photoURL !== null"
+              :src="$fire.auth.currentUser.photoURL"
               contain
-              v-if="this.$fire.auth.currentUser.photoURL !== null"
-              :src="this.$fire.auth.currentUser.photoURL"
               tile
             >
             </v-img>
             <v-card-text class="text-h5 text-md-h4 white--text">
-              {{ this.$fire.auth.currentUser.displayName }}
+              {{ this.user.name }}
             </v-card-text>
             <v-divider></v-divider>
             <v-card-subtitle> Target Preferences </v-card-subtitle>
             <v-card-text class="text-overline">
               High
               <v-chip color="info darken-1">
-                <v-icon color="red">mdi-water</v-icon>{{ low }}
+                <v-icon color="red">mdi-water</v-icon>{{ this.user.low }}
               </v-chip>
             </v-card-text>
             <v-card-text class="text-overline">
               Low
               <v-chip color="info darken-1">
-                <v-icon color="red">mdi-water</v-icon>{{ high }}
+                <v-icon color="red">mdi-water</v-icon>{{ this.user.high }}
               </v-chip>
             </v-card-text>
-            <v-divider class="mx-2"></v-divider>
-            <v-card-actions>
-              <v-btn outlined color="primary"> Edit </v-btn>
-            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
@@ -51,7 +42,7 @@
         <Profile />
       </v-row>
       <v-row justify="center">
-        <v-btn @click="printUser()" class="mt-4">Print User Details</v-btn>
+        <v-btn class="mt-4" @click="printUser()">Print User Details</v-btn>
       </v-row>
     </div>
     <div v-else>
@@ -73,16 +64,41 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Profile from '../components/utils/Profile'
 
 export default {
   components: {
     Profile,
   },
+  async mounted() {
+    if (this.$fire.auth.currentUser !== null) {
+      const domain = 'https://ruhacks-backend-c6jokpb2dq-uc.a.run.app'
+      const token = await this.$fire.auth.currentUser.getIdToken()
+      await axios
+        .get(domain + '/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          this.user = res.data
+          console.log(res.data)
+        })
+        .catch((err) => {
+          console.log('error getting profile: ' + err)
+        })
+    }
+  },
   data() {
     return {
-      high: '9.8',
-      low: '4.5',
+      user: {
+        name: '',
+        age: 0,
+        weight: 0,
+        low: 0.0,
+        high: 0.0,
+      },
     }
   },
   methods: {

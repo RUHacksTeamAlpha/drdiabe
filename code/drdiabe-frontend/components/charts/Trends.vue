@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -26,46 +28,19 @@ export default {
           curve: 'smooth',
         },
         xaxis: {
-          categories: [
-            '0:00am',
-            '3:00am',
-            '6:00am',
-            '9:00am',
-            '12:00pm',
-            '3:00pm',
-            '6:00pm',
-            '9:00pm',
-          ],
+          categories: [],
           labels: {
             style: {
-              colors: [
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-              ],
+              colors: [],
             },
           },
         },
         yaxis: {
-          max: 12,
+          max: 15,
           min: 2.0,
           labels: {
             style: {
-              colors: [
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-                'white',
-              ],
+              colors: [],
             },
           },
         },
@@ -78,18 +53,68 @@ export default {
       series: [
         {
           name: 'My Blood Glucose',
-          data: [6.4, 6.2, 7.2, 8.9, 5.3, 4.2, 6.0, 7.1],
+          data: [],
         },
         {
           name: 'low',
-          data: [4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0],
+          data: [],
         },
         {
           name: 'high',
-          data: [9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0],
+          data: [],
         },
       ],
     }
+  },
+  mounted() {
+    if (this.$fire.auth.currentUser !== null) {
+      this.getTargets()
+      this.getData()
+    }
+  },
+  methods: {
+    async getData() {
+      const domain = 'https://ruhacks-backend-c6jokpb2dq-uc.a.run.app'
+      const token = await this.$fire.auth.currentUser.getIdToken()
+      await axios
+        .get(domain + '/data', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          let i = 0
+          const len = res.data.length
+          for (; i < len; i++) {
+            this.options.xaxis.categories.push(res.data[i].time) // not working
+            this.options.xaxis.labels.style.colors.push('white')
+            this.options.yaxis.labels.style.colors.push('white')
+            this.series[0].data.push(res.data[i].bg)
+            this.series[1].data.push(this.low) // should be user set low
+            this.series[2].data.push(this.high) // should be user set high
+          }
+        })
+        .catch((err) => {
+          console.log('error getting chart data: ' + err)
+        })
+    },
+    async getTargets() {
+      const domain = 'https://ruhacks-backend-c6jokpb2dq-uc.a.run.app'
+      const token = await this.$fire.auth.currentUser.getIdToken()
+      await axios
+        .get(domain + '/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          this.low = res.data.low
+          this.high = res.data.high
+        })
+        .catch((err) => {
+          console.log('error getting high/low preference: ' + err)
+        })
+    },
   },
 }
 </script>

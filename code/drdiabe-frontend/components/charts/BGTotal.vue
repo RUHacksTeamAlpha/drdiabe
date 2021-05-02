@@ -16,6 +16,9 @@ export default {
   props: {
     numberOfBG: Number,
   },
+  methods: {
+    async getTotalNumber() {},
+  },
 }
 </script>
 
