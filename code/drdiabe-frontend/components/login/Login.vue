@@ -1,13 +1,8 @@
 <template>
-  <div>
-    <!-- <h1>{{ this.isAuthenticated() }}</h1> -->
-    <v-window
-      v-if="!isAuthenticated()"
-      v-model="selectedItem"
-      class="elevation-0"
-    >
+  <v-container fluid>
+    <v-window v-if="!isAuthenticated()" v-model="selectedItem">
       <v-window-item>
-        <v-card max-width="500" elevation="5" color="info" class="pa-4">
+        <v-card elevation="5" color="info" class="pa-4">
           <v-card-subtitle class="text-overline py-1">
             Welcome back
           </v-card-subtitle>
@@ -58,10 +53,13 @@
             </v-btn>
             <v-btn color="error" class="mr-4" @click="reset"> Clear </v-btn>
           </v-card-actions>
+          <v-btn @click="googleSignIn" color="#4285F4" class="ma-2"
+            >Sign in with Google</v-btn
+          >
         </v-card>
       </v-window-item>
       <v-window-item>
-        <v-card max-width="500" elevation="5" color="info" class="pa-4">
+        <v-card elevation="5" color="info" class="pa-4">
           <v-card-subtitle class="text-overline py-1"> Welcome</v-card-subtitle>
           <v-card-text
             class="text-md-h2 text-h4 py-0 font-weight-medium white--text"
@@ -117,6 +115,9 @@
               Create
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
+            <v-btn @click="googleSignIn" color="#4285F4"
+              >Sign in with Google</v-btn
+            >
             <v-btn color="accent" class="mr-4" @click="switchWindow">
               Switch to Login
             </v-btn>
@@ -125,13 +126,14 @@
         </v-card>
       </v-window-item>
     </v-window>
-    <div v-if="isAuthenticated()">
+    <v-row v-if="isAuthenticated()">
       <v-btn @click="signOut()">Sign Out</v-btn>
-    </div>
-  </div>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   data: () => ({
     valid: true,
@@ -168,6 +170,19 @@ export default {
     },
   },
   methods: {
+    googleSignIn() {
+      this.provider = new firebase.auth.GoogleAuthProvider()
+      this.$fire.auth
+        .signInWithPopup(this.provider)
+        .then((result) => {
+          // store the user ore wathever
+          this.$router.push('/')
+        })
+        .catch((e) => {
+          this.$snotify.error(e.message)
+          console.log(e)
+        })
+    },
     validate() {
       if (this.$refs.form.validate()) {
         this.loader = 'loading'

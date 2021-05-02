@@ -113,16 +113,16 @@ export default {
       title: 'drdiabe.tech',
       trunc: 'dr.d',
       social: [
-        {
-          icon: 'mdi-facebook',
-          alt: 'Facebook',
-          href: '',
-        },
-        {
-          icon: 'mdi-instagram',
-          alt: 'Instagram',
-          href: '',
-        },
+        // {
+        //   icon: 'mdi-facebook',
+        //   alt: 'Facebook',
+        //   href: '',
+        // },
+        // {
+        //   icon: 'mdi-instagram',
+        //   alt: 'Instagram',
+        //   href: '',
+        // },
         {
           icon: 'mdi-github',
           alt: 'Github',
