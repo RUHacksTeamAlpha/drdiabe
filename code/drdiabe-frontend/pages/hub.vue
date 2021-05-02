@@ -98,7 +98,7 @@
     </div>
     <div v-else>
       <v-row justify="center">
-        <v-card v-scroll-reveal>
+        <v-card v-scroll-reveal class="pa-2">
           <v-card-text class="text-h4 text-md-h2 white--text">
             User not logged in
           </v-card-text>

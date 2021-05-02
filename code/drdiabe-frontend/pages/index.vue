@@ -213,10 +213,9 @@
                 </v-col>
               </v-row>
             </v-card-text>
+            <v-divider></v-divider>
             <v-card-actions class="px-4" v-scroll-reveal="{ delay: 950 }">
-              <v-btn to="/login" rounded color="success darken-2">
-                Get started
-              </v-btn>
+              <v-btn to="/login" rounded color="secondary"> Get started </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

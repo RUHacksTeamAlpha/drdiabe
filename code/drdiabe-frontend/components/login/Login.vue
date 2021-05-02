@@ -37,33 +37,33 @@
               ></v-checkbox>
             </v-form>
           </v-card-text>
+          <v-divider></v-divider>
           <v-card-actions>
             <v-btn
               :disabled="!valid"
               :loading="loading"
-              color="success darken-2"
-              class="mr-4"
+              color="success darken-4"
               @click="signIn"
             >
               Login
-              <v-icon>mdi-login</v-icon>
+              <v-icon class="ml-2">mdi-login</v-icon>
             </v-btn>
-            <v-btn color="accent" class="mr-4" @click="switchWindow">
+            <v-btn color="accent" @click="switchWindow">
               Create an account
             </v-btn>
+            <v-btn @click="googleSignIn" color="secondary" class="mr-4">
+              Sign in with Google <v-icon class="ml-2">mdi-google</v-icon>
+            </v-btn>
+          </v-card-actions>
+          <v-card-actions>
             <v-btn color="error" class="mr-4" @click="reset"> Clear </v-btn>
           </v-card-actions>
-          <v-btn @click="googleSignIn" color="#4285F4" class="ma-2"
-            >Sign in with Google</v-btn
-          >
         </v-card>
       </v-window-item>
       <v-window-item>
         <v-card elevation="5" color="info" class="pa-4">
           <v-card-subtitle class="text-overline py-1"> Welcome</v-card-subtitle>
-          <v-card-text
-            class="text-md-h2 text-h4 py-0 font-weight-medium white--text"
-          >
+          <v-card-text class="text-md-h2 text-h4 py-0 font-weight-medium">
             Create an Account
           </v-card-text>
           <v-card-subtitle class="text-body-2 text-md-body-1">
@@ -104,30 +104,42 @@
               ></v-checkbox>
             </v-form>
           </v-card-text>
+          <v-divider></v-divider>
           <v-card-actions>
             <v-btn
               :disabled="!valid"
               :loading="loading"
-              color="success darken-2"
-              class="mr-4"
+              color="success darken-4"
               @click="signUp"
             >
               Create
-              <v-icon>mdi-pencil</v-icon>
+              <v-icon class="ml-2">mdi-pencil</v-icon>
             </v-btn>
-            <v-btn @click="googleSignIn" color="#4285F4"
-              >Sign in with Google</v-btn
-            >
-            <v-btn color="accent" class="mr-4" @click="switchWindow">
+            <v-btn color="accent" @click="switchWindow">
               Switch to Login
             </v-btn>
+            <v-btn @click="googleSignIn" color="secondary">
+              Sign in with Google <v-icon class="ml-2">mdi-google</v-icon>
+            </v-btn>
+          </v-card-actions>
+          <v-card-actions>
             <v-btn color="error" class="mr-4" @click="reset"> Clear </v-btn>
           </v-card-actions>
         </v-card>
       </v-window-item>
     </v-window>
-    <v-row v-if="isAuthenticated()">
-      <v-btn @click="signOut()">Sign Out</v-btn>
+    <v-row justify="center" v-if="isAuthenticated()">
+      <v-card>
+        <v-card-text class="text-body-2 text-md-body-1">
+          You are currently logged in
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn outlined color="error lighten-1" @click="signOut()"
+            >Sign Out</v-btn
+          >
+        </v-card-actions>
+      </v-card>
     </v-row>
   </v-container>
 </template>

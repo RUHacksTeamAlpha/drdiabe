@@ -50,7 +50,7 @@
           Update Profile
         </v-btn>
 
-        <v-btn color="error" outlined class="mr-4" @click="reset">
+        <v-btn color="error lighten-1" outlined class="mr-4" @click="reset">
           Reset Form
         </v-btn>
       </v-form>
