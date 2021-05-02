@@ -9,12 +9,12 @@
           <v-btn fab text small color="white" @click="prev">
             <v-icon small> mdi-chevron-left </v-icon>
           </v-btn>
-          <v-btn fab text small color="white" @click="next">
-            <v-icon small> mdi-chevron-right </v-icon>
-          </v-btn>
           <v-toolbar-title v-if="$refs.calendar">
             {{ $refs.calendar.title }}
           </v-toolbar-title>
+          <v-btn fab text small color="white" @click="next">
+            <v-icon small> mdi-chevron-right </v-icon>
+          </v-btn>
           <v-spacer></v-spacer>
           <v-menu bottom right>
             <template v-slot:activator="{ on, attrs }">

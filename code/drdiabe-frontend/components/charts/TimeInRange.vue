@@ -13,24 +13,6 @@
         :series="series"
       ></apexchart>
     </v-card-text>
-    <v-divider></v-divider>
-    <v-card-actions>
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="primary" dark v-bind="attrs" v-on="on">
-            Range
-            <v-icon class="mx-1">mdi-arrow-expand-horizontal</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="(item, index) in items" :key="index">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-spacer />
-      <v-btn plain color="info"> DOWNLOAD </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
@@ -38,13 +20,13 @@
 export default {
   data() {
     return {
-      title: 'Range Timings',
-      subtitle: 'Something goes here',
-      series: [13, 71, 14],
+      title: 'Time in Range',
+      subtitle: 'Check how often you are within your target B.G range',
+      series: [12, 71, 17],
       chartOptions: {
+        colors: ['#f0a30a', '#60AFFF', '#F44336'], // #60AFFF
         labels: ['Below Target', 'In Range', 'Above Target'],
       },
-      items: [{ title: 'Daily' }, { title: 'Weekly' }, { title: 'Monthly' }],
     }
   },
 }

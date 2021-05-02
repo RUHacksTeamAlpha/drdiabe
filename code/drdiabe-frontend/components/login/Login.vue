@@ -11,9 +11,7 @@
           <v-card-subtitle class="text-overline py-1">
             Welcome back
           </v-card-subtitle>
-          <v-card-text
-            class="text-md-h2 text-h4 py-0 font-weight-medium white--text"
-          >
+          <v-card-text class="text-md-h2 text-h4 py-0 font-weight-medium">
             Login
           </v-card-text>
           <v-card-subtitle class="text-body-2 text-md-body-1">
@@ -48,14 +46,14 @@
             <v-btn
               :disabled="!valid"
               :loading="loading"
-              color="success"
+              color="success darken-2"
               class="mr-4"
               @click="signIn"
             >
               Login
               <v-icon>mdi-login</v-icon>
             </v-btn>
-            <v-btn color="primary" class="mr-4" @click="switchWindow">
+            <v-btn color="accent" class="mr-4" @click="switchWindow">
               Create an account
             </v-btn>
             <v-btn color="error" class="mr-4" @click="reset"> Clear </v-btn>
@@ -112,14 +110,14 @@
             <v-btn
               :disabled="!valid"
               :loading="loading"
-              color="success"
+              color="success darken-2"
               class="mr-4"
               @click="signUp"
             >
               Create
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn color="primary" class="mr-4" @click="switchWindow">
+            <v-btn color="accent" class="mr-4" @click="switchWindow">
               Switch to Login
             </v-btn>
             <v-btn color="error" class="mr-4" @click="reset"> Clear </v-btn>

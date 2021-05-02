@@ -17,6 +17,24 @@
               </v-list-item>
             </v-list-item-group>
           </v-list>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="accent" dark v-bind="attrs" v-on="on">
+                  Range
+                  <v-icon class="mx-1">mdi-arrow-expand-horizontal</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, index) in range" :key="index">
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+            <v-spacer />
+            <v-btn plain color="info"> DOWNLOAD </v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
       <v-col>
@@ -37,6 +55,24 @@
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
+              <v-divider></v-divider>
+              <v-card-actions>
+                <v-menu offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn color="accent" dark v-bind="attrs" v-on="on">
+                      Range
+                      <v-icon class="mx-1">mdi-arrow-expand-horizontal</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item v-for="(item, index) in range" :key="index">
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+                <v-spacer />
+                <v-btn plain color="info"> DOWNLOAD </v-btn>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
@@ -45,10 +81,16 @@
             <!-- View Charts -->
             <v-row>
               <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
-                <BGTotal v-scroll-reveal="{ delay: 150 }" />
+                <BGTotal
+                  v-scroll-reveal="{ delay: 150 }"
+                  :numberOfBG="numberOfBG"
+                />
               </v-col>
               <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
-                <TimeSince v-scroll-reveal="{ delay: 550 }" />
+                <TimeSince
+                  v-scroll-reveal="{ delay: 550 }"
+                  time="1 day, 2 hours, 15 minutes"
+                />
               </v-col>
             </v-row>
             <v-row>
@@ -114,7 +156,16 @@ export default {
         { text: 'Summary', icon: 'mdi-calendar' },
         { text: 'Upload B.G', icon: 'mdi-water' },
       ],
+      range: [{ title: 'Daily' }, { title: 'Weekly' }, { title: 'Monthly' }],
     }
+  },
+  computed: {
+    numberOfBG() {
+      return 23
+    },
+    TimeSince() {
+      return '1 day, 2 hours, 15 minutes'
+    },
   },
 }
 </script>

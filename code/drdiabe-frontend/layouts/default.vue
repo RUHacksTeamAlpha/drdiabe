@@ -50,7 +50,7 @@
         </v-fade-transition>
       </v-container>
     </v-main>
-    <v-footer absolute dark padless app color="primary">
+    <v-footer absolute dark padless app color="accent">
       <v-card flat tile width="100%" class="white--text text-center">
         <v-card-text>
           <v-icon> mdi-stethoscope </v-icon>
@@ -61,18 +61,13 @@
         <v-card-text>
           <v-tooltip v-for="(item, index) in social" :key="index" bottom>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                :href="item.href"
-                target="_blank"
-                icon
-                class="mx-4 white--text"
-              >
+              <v-btn :href="item.href" class="mx-4 white--text" text>
                 <v-icon size="24px" color="white" v-bind="attrs" v-on="on">
                   {{ item.icon }}
                 </v-icon>
+                <span>{{ item.alt }}</span>
               </v-btn>
             </template>
-            <span>{{ item.alt }}</span>
           </v-tooltip>
         </v-card-text>
       </v-card>
@@ -105,14 +100,14 @@ export default {
           to: '/hub',
         },
         {
-          icon: 'mdi-lock',
-          title: 'Login/Logout',
-          to: '/login',
-        },
-        {
           icon: 'mdi-account',
           title: 'Account',
           to: '/account',
+        },
+        {
+          icon: 'mdi-lock',
+          title: 'Login/Logout',
+          to: '/login',
         },
       ],
       title: 'drdiabe.tech',
@@ -140,7 +135,9 @@ export default {
     getItems() {
       return this.$store.state.routes.getItems
     },
+    isAuthenticated() {
+      return this.$fire.auth.currentUser !== null
+    },
   },
-  methods: {},
 }
 </script>

@@ -72,8 +72,8 @@ module.exports = {
       dark: true,
       themes: {
         dark: {
-          primary: '#345995',
-          accent: '#60AFFF',
+          primary: '#60AFFF',
+          accent: '#345995',
           secondary: '#121212',
           info: '#A29587',
           warning: colors.amber.base,
@@ -96,10 +96,10 @@ module.exports = {
     initialize: {
       onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
       onAuthStateChangedAction: 'onAuthStateChangedAction',
-      subscribeManually: false
+      subscribeManually: false,
     },
     ssr: false, // default
     emulatorPort: 9099,
     emulatorHost: 'http://localhost',
-  }
+  },
 }

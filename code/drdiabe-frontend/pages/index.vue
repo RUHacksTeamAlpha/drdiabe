@@ -5,62 +5,68 @@
         <v-card class="ma-2" color="transparent" elevation="0">
           <v-card-text
             v-scroll-reveal="{ delay: 150 }"
-            class="text-md-h2 text-h4 font-weight-medium white--text"
+            class="text-md-h1 text-h3 font-weight-medium white--text"
           >
             Test. Upload. Understand your diabetes.
           </v-card-text>
 
           <v-card-subtitle
             v-scroll-reveal="{ delay: 350 }"
-            class="text-overline"
+            class="text-overline py-1"
           >
-            leveraging cloud computing to bring more affordable diabetic care to
-            millions around the world
+            leveraging cloud computing,
+          </v-card-subtitle>
+          <v-card-subtitle
+            v-scroll-reveal="{ delay: 350 }"
+            class="text-overline py-1"
+          >
+            to bring more affordable diabetic care,
+          </v-card-subtitle>
+          <v-card-subtitle
+            v-scroll-reveal="{ delay: 350 }"
+            class="text-overline py-1"
+          >
+            to <i class="white--text"> millions </i> around the globe.
           </v-card-subtitle>
 
           <v-card-actions v-scroll-reveal="{ delay: 450 }">
-            <v-btn outlined rounded color="accent"> Get started </v-btn>
+            <v-btn large outlined rounded color="primary"> Get started </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col>
-        <v-card
-          v-scroll-reveal="{ delay: 550 }"
-          class="ma-2"
-          color="transparent"
-          elevation="0"
+      <v-col v-if="$vuetify.breakpoint.mdAndUp">
+        <v-parallax
+          v-scroll-reveal="{ delay: 450 }"
+          src="/img/diabetes.jpg"
+          class="rounded-card"
         >
-          <v-img
-            class="meter"
-            contain
-            height="400px"
-            src="/img/meter.jpg"
-          ></v-img>
-        </v-card>
+          <v-sheet height="500" color="transparent"></v-sheet>
+        </v-parallax>
       </v-col>
     </v-row>
-    <v-sheet
-      color="transparent"
-      elevation="0"
-      :height="$vuetify.breakpoint.mdAndUp ? '400' : '100'"
-      width="100%"
-    >
+    <v-row v-if="$vuetify.breakpoint.mdAndUp">
+      <v-spacer></v-spacer>
+      <v-col>
+        <v-parallax
+          v-scroll-reveal="{ delay: 550 }"
+          src="/img/doctors.jpg"
+          class="rounded-card up-and-left"
+        >
+          <v-sheet height="500" color="transparent"></v-sheet>
+        </v-parallax>
+      </v-col>
+    </v-row>
+    <v-sheet color="transparent" elevation="0" height="100" width="100%">
     </v-sheet>
     <v-row>
-      <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
-        <v-card
-          v-scroll-reveal="{ delay: 150 }"
-          class="rounded-card pa-0 up"
-          color="transparent"
-          elevation="0"
+      <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="5">
+        <v-parallax
+          v-scroll-reveal="{ delay: 250 }"
+          src="/img/diverse-happy.jpg"
+          class="rounded-card"
         >
-          <v-img
-            v-if="$vuetify.breakpoint.mdAndUp"
-            height="550px"
-            min-width="800px"
-            src="/img/diverse-happy.jpg"
-          ></v-img>
-        </v-card>
+          <v-sheet height="650" color="transparent"></v-sheet>
+        </v-parallax>
       </v-col>
       <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
         <v-card v-scroll-reveal="{ delay: 450 }" class="pa-2 down">
@@ -80,7 +86,9 @@
                 <v-icon class="mx-2">mdi-upload</v-icon>
                 Upload your Blood Glucose
               </v-card-title>
-              <v-card-text class="pa-0"> Enter your B.G and ... </v-card-text>
+              <v-card-text class="pa-0">
+                Enter your B.G, date, and time and we'll handle the rest!
+              </v-card-text>
             </v-card>
             <v-card elevation="0" class="pa-2">
               <v-card-title class="pa-0">
@@ -88,7 +96,8 @@
                 View your Blood Glucose Trends <br />
               </v-card-title>
               <v-card-text class="pa-0">
-                Monitor your Blood Glucose Trends ...
+                Monitor your Blood Glucose Trends using our beatiful graphs,
+                courtesy of ApexCharts.
               </v-card-text>
             </v-card>
             <v-card elevation="0" class="pa-2">
@@ -97,15 +106,15 @@
                 Generate Summary Reports <br />
               </v-card-title>
               <v-card-text class="pa-0">
-                Generate a report which details the average trends of your blood
-                glucose ...
+                Generate a report detailing the day-to-day trends of your blood
+                glucose
               </v-card-text>
             </v-card>
           </v-card-text>
           <v-card-actions>
             <v-row>
               <v-col>
-                <v-btn outlined rounded color="accent"> Get started </v-btn>
+                <v-btn outlined rounded color="primary"> Get started </v-btn>
               </v-col>
               <v-spacer></v-spacer>
               <v-col>
@@ -126,7 +135,7 @@
       width="100%"
     >
     </v-sheet>
-    <v-sheet color="primary" elevation="0" width="100%">
+    <v-sheet color="accent" elevation="0" width="100%">
       <v-row>
         <v-col :cols="$vuetify.breakpoint.mdAndUp ? '6' : '12'">
           <v-card class="ma-2" color="transparent" elevation="0">
@@ -201,7 +210,7 @@
               </v-row>
             </v-card-text>
             <v-card-actions class="px-4" v-scroll-reveal="{ delay: 950 }">
-              <v-btn outlined rounded color="accent"> Get started </v-btn>
+              <v-btn rounded color="success darken-2"> Get started </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -245,9 +254,10 @@ export default {}
     transform: translateY(-100px);
   }
 
-  .meter {
-    animation: fadeIn 1s;
+  .up-and-left {
+    transform: translateY(-175px) translateX(-125px);
   }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;

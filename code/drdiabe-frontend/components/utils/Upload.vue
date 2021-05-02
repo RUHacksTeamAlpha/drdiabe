@@ -32,7 +32,7 @@
             </v-text-field>
           </v-card>
 
-          <v-btn color="primary" @click="e1 = 2"> Continue </v-btn>
+          <v-btn color="accent" @click="e1 = 2"> Continue </v-btn>
 
           <v-btn text color="error"> Cancel </v-btn>
         </v-stepper-content>
@@ -62,10 +62,10 @@
               </template>
               <v-date-picker v-model="date" scrollable>
                 <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="modal = false">
+                <v-btn text color="accent" @click="modal = false">
                   Cancel
                 </v-btn>
-                <v-btn text color="primary" @click="$refs.dialog1.save(date)">
+                <v-btn text color="accent" @click="$refs.dialog1.save(date)">
                   OK
                 </v-btn>
               </v-date-picker>
@@ -89,17 +89,17 @@
               </template>
               <v-time-picker v-if="modal2" v-model="time" full-width>
                 <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="modal2 = false">
+                <v-btn text color="accent" @click="modal2 = false">
                   Cancel
                 </v-btn>
-                <v-btn text color="primary" @click="$refs.dialog.save(time)">
+                <v-btn text color="accent" @click="$refs.dialog.save(time)">
                   OK
                 </v-btn>
               </v-time-picker>
             </v-dialog>
           </v-card>
 
-          <v-btn color="primary" @click="e1 = 3"> Continue </v-btn>
+          <v-btn color="accent" @click="e1 = 3"> Continue </v-btn>
           <v-btn text color="error"> Cancel </v-btn>
         </v-stepper-content>
 

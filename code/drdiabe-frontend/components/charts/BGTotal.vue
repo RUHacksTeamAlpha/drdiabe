@@ -12,10 +12,8 @@
 
 <script>
 export default {
-  data() {
-    return {
-      numberOfBG: '28',
-    }
+  props: {
+    numberOfBG: Number,
   },
 }
 </script>

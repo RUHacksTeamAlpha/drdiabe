@@ -31,7 +31,7 @@
           </v-card-text>
           <v-divider class="mx-2"></v-divider>
           <v-card-actions>
-            <v-btn outlined color="accent"> Edit </v-btn>
+            <v-btn outlined color="primary"> Edit </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

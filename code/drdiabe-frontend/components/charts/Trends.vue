@@ -6,27 +6,9 @@
     <v-card-subtitle class="py-0">
       {{ subtitle }}
     </v-card-subtitle>
-    <v-card-text>
+    <v-card-text class="black--text">
       <apexchart type="line" :options="options" :series="series"></apexchart>
     </v-card-text>
-    <v-divider></v-divider>
-    <v-card-actions>
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="primary" dark v-bind="attrs" v-on="on">
-            Range
-            <v-icon class="mx-1">mdi-arrow-expand-horizontal</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="(item, index) in items" :key="index">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-spacer />
-      <v-btn plain color="info"> DOWNLOAD </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
@@ -34,23 +16,46 @@
 export default {
   data() {
     return {
-      title: 'My Blood Glucose Trends',
-      subtitle: 'Something goes here',
+      title: 'Blood Glucose Trends',
+      subtitle: 'Review your daily / weekly / monthly B.G trends',
+      low: 4.0,
+      high: 9.0,
       options: {
-        chart: {
-          id: 'vuechart-example',
+        colors: ['#60AFFF', '#f0a30a', '#F44336'], // #60AFFF
+        stroke: {
+          curve: 'smooth',
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: [
+            '0:00am',
+            '3:00am',
+            '6:00am',
+            '9:00am',
+            '12:00pm',
+            '3:00pm',
+            '6:00pm',
+            '9:00pm',
+          ],
+        },
+        yaxis: {
+          max: 12,
+          min: 2.0,
         },
       },
       series: [
         {
-          name: 'series-1',
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
+          name: 'My Blood Glucose',
+          data: [6.4, 6.2, 7.2, 8.9, 5.3, 4.2, 6.0, 7.1],
+        },
+        {
+          name: 'low',
+          data: [4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0],
+        },
+        {
+          name: 'high',
+          data: [9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0],
         },
       ],
-      items: [{ title: 'Daily' }, { title: 'Weekly' }, { title: 'Monthly' }],
     }
   },
 }

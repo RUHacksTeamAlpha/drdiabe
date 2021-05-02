@@ -12,10 +12,8 @@
 
 <script>
 export default {
-  data() {
-    return {
-      time: '1 hour, 23 minutes', // any format can be used
-    }
+  props: {
+    time: String,
   },
 }
 </script>
