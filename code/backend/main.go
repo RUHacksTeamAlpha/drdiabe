@@ -81,7 +81,7 @@ func main() {
 
 	r.GET("/auth", authMiddleware(), func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": c.MustGet("token"),
+			"message": c.GetString("token"),
 		})
 	})
 

@@ -9,6 +9,8 @@ push:
 	docker push alphakilo07/ruhacks-backend
 
 cloud:
+	
+	docker tag ruhacks-backend gcr.io/diabetech-515ed/ruhacks-backend
 	docker push gcr.io/diabetech-515ed/ruhacks-backend
 
 run:
